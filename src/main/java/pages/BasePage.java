@@ -1,4 +1,5 @@
 package pages;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -7,7 +8,7 @@ import org.testng.annotations.BeforeClass;
 public class BasePage {
     protected WebDriver driver;
 
-    private String baseUrl = "https://www.lambdatest.com/selenium-playground/";
+    private String baseUrl = "https://demoqa.com/books";
 
     public BasePage(){
         //default constructor
