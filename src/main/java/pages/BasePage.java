@@ -1,6 +1,7 @@
 package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -10,7 +11,7 @@ public class BasePage {
 
     private String baseUrl = "https://demoqa.com/books";
 
-    public BasePage(){
+    public BasePage() {
         //default constructor
     }
 
@@ -19,13 +20,15 @@ public class BasePage {
     }
 
     @BeforeClass
-    public void setUp(){
+    public void setUp() {
         System.setProperty("web-driver.chrome.driver", "\"C:\\Users\\precu\\Downloads\\chromedriver_win32\\chromedriver.exe\"");
-        driver =new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get(baseUrl);
-    }
-    //@AfterMethod //folosim @AfterMethod daca vrem sa inchidem browserul dupa fiecare folosire
-    //public void tearDown(){
-    //driver.quit();  //se deschide doar la sfarsitul dupa ce facem prezentarea altfel nu se vede nimic
-}
 
+        //@AfterMethod //folosim @AfterMethod daca vrem sa inchidem browserul dupa fiecare folosire
+        //public void tearDown(){
+        //driver.quit();  //se deschide doar la sfarsitul dupa ce facem prezentarea altfel nu se vede nimic
+
+
+    }
+}
