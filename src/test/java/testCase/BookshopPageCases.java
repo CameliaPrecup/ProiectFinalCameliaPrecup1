@@ -35,22 +35,20 @@ public class BookshopPageCases extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("see-book-Git Pocket Guide")));
         driver.findElement(By.id("see-book-Git Pocket Guide")).click();
+        Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
     }
 
     @Test
 
-    public void addNewBook() throws InterruptedException {
+    public void addNewBook()throws InterruptedException{
         loginPage.login("cameliaP","T&st1234");
+        driver.manage().window().maximize();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("see-book-Git Pocket Guide")));
         driver.findElement(By.id("see-book-Git Pocket Guide")).click();
-        WebDriverWait button = new WebDriverWait(driver, Duration.ofSeconds(10));
-        button.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[9]/div[2]/button"))).click();
-
-
-
-
-
+        bookshopPage.setAddToYourCollection();
     }
+
+
 
 }

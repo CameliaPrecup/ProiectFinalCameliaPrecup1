@@ -1,6 +1,5 @@
 package testCase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -10,6 +9,7 @@ import pages.FirstPage;
 import pages.LoginPage;
 
 import java.time.Duration;
+import java.util.List;
 
 
 public class FirstPageTestCase extends BasePage {
@@ -27,7 +27,7 @@ public class FirstPageTestCase extends BasePage {
     }
 
     @Test
-    public void goToSearchField() {
+    public void goToSearchField()throws InterruptedException {
         firstPage.selectSearchField();
     }
 
@@ -51,6 +51,7 @@ public class FirstPageTestCase extends BasePage {
     @Test
     public void gotoButtonLogin() throws InterruptedException {
         firstPage.clickOnLoginButton();
+        Assert.assertTrue(driver.getPageSource().contains("Login"));
     }
 
     @Test
@@ -65,18 +66,24 @@ public class FirstPageTestCase extends BasePage {
     public void LogOut() throws InterruptedException{
         loginPage.login("cameliaP", "T&st1234");
         firstPage.logOut();
+        Assert.assertTrue(driver.getPageSource().contains("Login"));
     }
 
     @Test
     public void selectFirstItem()throws InterruptedException{
         firstPage.clickonFirstItem();
+        Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
 
     }
     @Test
-    public void returnToBookStore()throws InterruptedException{
-        firstPage.clickonFirstItem();
+    public void addtoCollectionbook()throws InterruptedException{
+        loginPage.login("cameliaP","T&st1234");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("see-book-Git Pocket Guide")));
+        driver.findElement(By.id("see-book-Git Pocket Guide")).click();
+        driver.manage().window().maximize();
         WebDriverWait Btnn = new WebDriverWait(driver,Duration.ofSeconds(20));
-        Btnn.until(ExpectedConditions.presenceOfElementLocated(By.name("Back To Book Store"))).click();
+        Btnn.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fullButton.text-right > button#addNewRecordButton"))).click();
     }
 
 

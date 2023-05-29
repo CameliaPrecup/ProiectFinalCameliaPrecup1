@@ -23,7 +23,7 @@ public class BookshopPage extends BasePage {
 
     By SearchBox = By.id("searchBox");
 
-    By AddToYourCollection = By.cssSelector("#addNewRecordButton");
+    By AddToYourCollection = By.cssSelector(".fullButton.text-right > button#addNewRecordButton");
 
     By DeleteOk = By.id("closeSmallModal-ok");
 
@@ -42,10 +42,15 @@ public class BookshopPage extends BasePage {
 
     By DeleteAccount = By.id("submit");
 
+    public void setAddToYourCollection(){
+        driver.findElement(By.cssSelector(".fullButton.text-right > button#addNewRecordButton")).click();
+    }
+
 
 
 
 }
+
 
 
 
