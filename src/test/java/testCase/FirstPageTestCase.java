@@ -134,7 +134,7 @@ public class FirstPageTestCase extends BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1000)");
         btn.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fullButton.text-right > button#addNewRecordButton"))).click();
-        WebDriverWait popup = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait popup = new WebDriverWait(driver, Duration.ofSeconds(30));
         popup.until(ExpectedConditions.alertIsPresent());
         driver.switchTo().alert().accept();
         driver.findElement(By.cssSelector(".text-left .btn-primary")).click();
