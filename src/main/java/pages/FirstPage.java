@@ -34,6 +34,8 @@ public class FirstPage extends BasePage {
 
     By FirstTitle = By.id("see-book-Git Pocket Guide");
 
+    By FirstItem = By.xpath("//span[@id='see-book-Git Pocket Guide']/a[@href='/books?book=9781449325862']");
+
 
 
 
@@ -41,6 +43,10 @@ public class FirstPage extends BasePage {
 
 
     //Methods to fill the text fields and click required buttons for setting up the new user
+
+    public void setFirstItemafterlogin() {
+        driver.findElement(FirstItem).click();
+    }
 
     public void selectUserNameField(){
         driver.findElement(UserNameField).click();

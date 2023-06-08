@@ -16,9 +16,9 @@ public class CheckBoxPage extends BasePage {
 
 
 
-    By ButtonElement = By.cssSelector(".accordion .element-group:nth-of-type(1) .header-text");
+    By ButtonElement = By.cssSelector("div:nth-of-type(1) > .group-header > .header-wrapper > .header-text");
 
-    By CheckBox = By.cssSelector(".collapse.element-list.show > .menu-list > li:nth-of-type(2) > .text");
+    By CheckBox = By.id("item-1");
 
     By JustBox = By.cssSelector(".rct-checkbox");
 

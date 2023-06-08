@@ -21,10 +21,18 @@ public class RadioButtonTestCase extends BasePage{
     }
 
     @Test
-    public void clickRadioBtn(){
+    public void clickElementsbtn()throws InterruptedException{
         radioButtonPage.leftButtonElement();
-        radioButtonPage.setRadioBthn();
-        Assert.assertTrue(driver.getPageSource().contains("Radio Button"));
+        Assert.assertTrue(driver.getPageSource().contains("Elements"));
+
+    }
+
+    @Test
+    public void clickRadioBtn()throws InterruptedException{
+            radioButtonPage.leftButtonElement();
+            radioButtonPage.setRadioBthn();
+            Assert.assertTrue(driver.getPageSource().contains("Radio Button"));
+
     }
     @Test
     public void yesBtn()throws InterruptedException{

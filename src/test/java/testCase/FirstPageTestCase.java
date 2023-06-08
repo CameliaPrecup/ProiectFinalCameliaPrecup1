@@ -29,12 +29,14 @@ public class FirstPageTestCase extends BasePage {
     @Test
     public void goToSearchField()throws InterruptedException {
         firstPage.selectSearchField();
+        Assert.assertTrue(driver.getPageSource().contains("Book Store"));
     }
 
     @Test
     public void writeIntoSearchField() throws InterruptedException {
         firstPage.selectSearchField();
         firstPage.inputSearchField("Git Pocket Guide");
+        Assert.assertTrue(driver.getPageSource().contains("Book Store"));
     }
 
     @Test
@@ -70,31 +72,80 @@ public class FirstPageTestCase extends BasePage {
     }
 
     @Test
+    public void login() throws InterruptedException {
+        loginPage.login("cameliaP", "T&st1234");
+        Assert.assertFalse(driver.getPageSource().contains("Log out"));
+    }
+
+
+    @Test
     public void selectFirstItem()throws InterruptedException{
         firstPage.clickonFirstItem();
         Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
 
     }
-    @Test
-    public void addtoCollectionbook()throws InterruptedException{
-        loginPage.login("cameliaP","T&st1234");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("see-book-Git Pocket Guide")));
-        driver.findElement(By.id("see-book-Git Pocket Guide")).click();
-        driver.manage().window().maximize();
-        WebDriverWait Btnn = new WebDriverWait(driver,Duration.ofSeconds(20));
-        Btnn.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fullButton.text-right > button#addNewRecordButton"))).click();
-    }
-
 
     @Test
-    public void clickOnGoToBookStoreMenu() throws InterruptedException{
+    public void firstitemafterlogin() throws InterruptedException {
         loginPage.login("cameliaP", "T&st1234");
-        firstPage.logOut();
-        WebDriverWait Button = new WebDriverWait(driver,Duration.ofSeconds(10));
-        Button.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div/div[2]/div[1]/div/div/div[6]/div/ul/li[2]/span"))).click();
+        driver.manage().window().maximize();
+        WebDriverWait Btnn = new WebDriverWait(driver,Duration.ofSeconds(10));
+        Btnn.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='see-book-Git Pocket Guide']/a[@href='/books?book=9781449325862']"))).click();
+        Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
     }
 
-}
+    @Test
+    public void addToYourCollection()throws InterruptedException {
+        loginPage.login("cameliaP", "T&st1234");
+        driver.manage().window().maximize();
+        WebDriverWait Btnn = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Btnn.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='see-book-Git Pocket Guide']/a[@href='/books?book=9781449325862']"))).click();
+        WebDriverWait btn = new WebDriverWait(driver, Duration.ofSeconds(10));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+        btn.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fullButton.text-right > button#addNewRecordButton"))).click();
+        Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
+    }
+    @Test
+
+    public void clickonpopup()throws InterruptedException{
+        loginPage.login("cameliaP", "T&st1234");
+        driver.manage().window().maximize();
+        WebDriverWait Btnn = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Btnn.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='see-book-Git Pocket Guide']/a[@href='/books?book=9781449325862']"))).click();
+        WebDriverWait btn = new WebDriverWait(driver, Duration.ofSeconds(10));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+        btn.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fullButton.text-right > button#addNewRecordButton"))).click();
+        WebDriverWait popup = new WebDriverWait(driver, Duration.ofSeconds(20));
+        popup.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+        Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
+
+
+    }
+    @Test
+    public void backToBookStoreBtn()throws InterruptedException{
+        loginPage.login("cameliaP", "T&st1234");
+        driver.manage().window().maximize();
+        WebDriverWait Btnn = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Btnn.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='see-book-Git Pocket Guide']/a[@href='/books?book=9781449325862']"))).click();
+        WebDriverWait btn = new WebDriverWait(driver, Duration.ofSeconds(10));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+        btn.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fullButton.text-right > button#addNewRecordButton"))).click();
+        WebDriverWait popup = new WebDriverWait(driver, Duration.ofSeconds(20));
+        popup.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+        driver.findElement(By.cssSelector(".text-left .btn-primary")).click();
+        Assert.assertTrue(driver.getPageSource().contains("Book Store"));
+
+    }
+
+
+    }
+
+
+
 
 
