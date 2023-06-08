@@ -10,6 +10,7 @@ import org.testng.annotations.*;
 import pages.BasePage;
 import pages.BookshopPage;
 import pages.LoginPage;
+import org.openqa.selenium.JavascriptExecutor;
 
 import java.time.Duration;
 
@@ -18,6 +19,8 @@ public class BookshopPageCases extends BasePage {
 
     private BookshopPage bookshopPage;
     private LoginPage loginPage;
+
+    JavascriptExecutor js = (JavascriptExecutor) driver;
 
     @BeforeMethod
 
@@ -30,25 +33,72 @@ public class BookshopPageCases extends BasePage {
 
     @Test
 
-    public void firstBook() throws InterruptedException {
-        loginPage.login("cameliaP","T&st1234");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("see-book-Git Pocket Guide")));
-        driver.findElement(By.id("see-book-Git Pocket Guide")).click();
-        Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
+    public void login() throws InterruptedException {
+        loginPage.login("cameliaP", "T&st1234");
+        Assert.assertFalse(driver.getPageSource().contains("Log out"));
+
     }
 
     @Test
 
-    public void addNewBook()throws InterruptedException{
-        loginPage.login("cameliaP","T&st1234");
+    public void addfirstbook() throws InterruptedException {
+        loginPage.login("cameliaP", "T&st1234");
         driver.manage().window().maximize();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("see-book-Git Pocket Guide")));
-        driver.findElement(By.id("see-book-Git Pocket Guide")).click();
-        bookshopPage.setAddToYourCollection();
+        bookshopPage.addfirstTitle();
+        Assert.assertTrue(driver.getPageSource().contains("Book Store"));
+    }
+
+    @Test
+    public void addBookToCollection() throws InterruptedException {
+        loginPage.login("cameliaP", "T&st1234");
+        driver.manage().window().maximize();
+        bookshopPage.addfirstTitle();
+        WebDriverWait btn = new WebDriverWait(driver, Duration.ofSeconds(50));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+        btn.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fullButton.text-right > button#addNewRecordButton"))).click();
+        WebDriverWait popup = new WebDriverWait(driver, Duration.ofSeconds(50));
+        popup.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+
+        Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
+
+
+    }
+
+    @Test
+
+    public void clickonPopUp() throws InterruptedException {
+        loginPage.login("cameliaP", "T&st1234");
+        driver.manage().window().maximize();
+        bookshopPage.addfirstTitle();
+        WebDriverWait btn = new WebDriverWait(driver, Duration.ofSeconds(50));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+        btn.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".text-left .btn-primary"))).click();
+        WebDriverWait popup = new WebDriverWait(driver, Duration.ofSeconds(100));
+        popup.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+
+
+
+
+    }
+
+
     }
 
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
+

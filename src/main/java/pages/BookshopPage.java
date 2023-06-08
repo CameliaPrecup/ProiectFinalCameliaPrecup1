@@ -16,9 +16,7 @@ public class BookshopPage extends BasePage {
         loginPage = new LoginPage(driver);
     }
 
-    By UserNameField = By.id("userName");
-    By PasswordField = By.id("password");
-    By ButtonLogin = By.id("login");
+
     By FirstTitle = By.id("see-book-Git Pocket Guide");
 
     By SearchBox = By.id("searchBox");
@@ -29,21 +27,22 @@ public class BookshopPage extends BasePage {
 
     By CancelDelete = By.id("closeSmallModal-cancel");
 
-    By BackToBookStore = By.id("addNewRecordButton");
+    By BackToBookStore = By.id(".text-left .btn-primary");
 
     By ProfileButton = By.id("item-3");
 
 
-    By DeleteButton = By.id("delete-record-undefined");
 
-    By ExtendedConfirmationButton = By.id("google_esf");
 
-    By GoToStoreBtn = By.id("gotoStore");
+
+    By GoToStoreBtn = By.cssSelector("button#addNewRecordButton");
 
     By DeleteAccount = By.id("submit");
 
-    public void setAddToYourCollection(){
-        driver.findElement(By.cssSelector(".fullButton.text-right > button#addNewRecordButton")).click();
+    public void addfirstTitle(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("see-book-Git Pocket Guide")));
+        driver.findElement(By.id("see-book-Git Pocket Guide")).click();
     }
 
 
