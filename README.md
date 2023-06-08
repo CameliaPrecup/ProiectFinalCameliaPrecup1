@@ -58,7 +58,7 @@ Suita de testare va aparea in tab-ul Run din Intellij si va arata in felul acest
 **Exemplu:**
 
 
-![image](https://github.com/CameliaPrecup/ProiectFinalCameliaPrecup1/assets/120185566/a5a76ead-8b38-47f3-8a19-7cfe57353d58)
+[![img.png](img.png)]
 
 
 
