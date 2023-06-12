@@ -28,12 +28,14 @@ public class FirstPageTestCase extends BasePage {
 
     @Test
     public void goToSearchField()throws InterruptedException {
+        driver.manage().window().maximize();
         firstPage.selectSearchField();
         Assert.assertTrue(driver.getPageSource().contains("Book Store"));
     }
 
     @Test
     public void writeIntoSearchField() throws InterruptedException {
+        driver.manage().window().maximize();
         firstPage.selectSearchField();
         firstPage.inputSearchField("Git Pocket Guide");
         Assert.assertTrue(driver.getPageSource().contains("Book Store"));
@@ -41,6 +43,7 @@ public class FirstPageTestCase extends BasePage {
 
     @Test
     public void nonExistentSearch() throws InterruptedException {
+        driver.manage().window().maximize();
         firstPage.selectSearchField();
         firstPage.inputSearchField("Learn Selenium");
         WebElement element = driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[2]/div[2]/div[2]/div[2]/div[1]/div[2]/div[6]/div/div[3]" +
@@ -52,12 +55,14 @@ public class FirstPageTestCase extends BasePage {
 
     @Test
     public void gotoButtonLogin() throws InterruptedException {
+        driver.manage().window().maximize();
         firstPage.clickOnLoginButton();
         Assert.assertTrue(driver.getPageSource().contains("Login"));
     }
 
     @Test
     public void gotoUserNameField() throws InterruptedException {
+        driver.manage().window().maximize();
         firstPage.clickOnLoginButton();
         firstPage.selectUserNameField();
         firstPage.sendKeysToUserNameField("cameliaP");
@@ -66,6 +71,7 @@ public class FirstPageTestCase extends BasePage {
     }
     @Test
     public void LogOut() throws InterruptedException{
+        driver.manage().window().maximize();
         loginPage.login("cameliaP", "T&st1234");
         firstPage.logOut();
         Assert.assertTrue(driver.getPageSource().contains("Login"));
@@ -73,6 +79,7 @@ public class FirstPageTestCase extends BasePage {
 
     @Test
     public void login() throws InterruptedException {
+        driver.manage().window().maximize();
         loginPage.login("cameliaP", "T&st1234");
         Assert.assertFalse(driver.getPageSource().contains("Log out"));
     }
@@ -80,6 +87,7 @@ public class FirstPageTestCase extends BasePage {
 
     @Test
     public void selectFirstItem()throws InterruptedException{
+        driver.manage().window().maximize();
         firstPage.clickonFirstItem();
         Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
 
@@ -87,8 +95,8 @@ public class FirstPageTestCase extends BasePage {
 
     @Test
     public void firstitemafterlogin() throws InterruptedException {
-        loginPage.login("cameliaP", "T&st1234");
         driver.manage().window().maximize();
+        loginPage.login("cameliaP", "T&st1234");
         WebDriverWait Btnn = new WebDriverWait(driver,Duration.ofSeconds(10));
         Btnn.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='see-book-Git Pocket Guide']/a[@href='/books?book=9781449325862']"))).click();
         Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
@@ -96,8 +104,8 @@ public class FirstPageTestCase extends BasePage {
 
     @Test
     public void addToYourCollection()throws InterruptedException {
-        loginPage.login("cameliaP", "T&st1234");
         driver.manage().window().maximize();
+        loginPage.login("cameliaP", "T&st1234");
         WebDriverWait Btnn = new WebDriverWait(driver, Duration.ofSeconds(10));
         Btnn.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='see-book-Git Pocket Guide']/a[@href='/books?book=9781449325862']"))).click();
         WebDriverWait btn = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -109,8 +117,8 @@ public class FirstPageTestCase extends BasePage {
     @Test
 
     public void clickonpopup()throws InterruptedException{
-        loginPage.login("cameliaP", "T&st1234");
         driver.manage().window().maximize();
+        loginPage.login("cameliaP", "T&st1234");
         WebDriverWait Btnn = new WebDriverWait(driver, Duration.ofSeconds(10));
         Btnn.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='see-book-Git Pocket Guide']/a[@href='/books?book=9781449325862']"))).click();
         WebDriverWait btn = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -126,8 +134,8 @@ public class FirstPageTestCase extends BasePage {
     }
     @Test
     public void backToBookStoreBtn()throws InterruptedException{
-        loginPage.login("cameliaP", "T&st1234");
         driver.manage().window().maximize();
+        loginPage.login("cameliaP", "T&st1234");
         WebDriverWait Btnn = new WebDriverWait(driver, Duration.ofSeconds(10));
         Btnn.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='see-book-Git Pocket Guide']/a[@href='/books?book=9781449325862']"))).click();
         WebDriverWait btn = new WebDriverWait(driver, Duration.ofSeconds(10));
