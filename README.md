@@ -9,7 +9,7 @@
 ***Nume Proiect si scop :****
 ProiectFinalCameliaPrecup1 contine un numar de mai bine de 
 
-30 teste automatizate folosind Selenium Webdriver ca si cadul de lucru(framework) 
+30 teste automatizate folosind Selenium Webdriver ca si cadrul de lucru(framework) 
 
  realizate pe  https://demoqa.com/books
 
