@@ -112,6 +112,7 @@ public class FirstPageTestCase extends BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1000)");
         btn.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fullButton.text-right > button#addNewRecordButton"))).click();
+        WebDriverWait popup = new WebDriverWait(driver, Duration.ofSeconds(30));
         Assert.assertTrue(driver.getPageSource().contains("9781449325862"));
     }
     @Test

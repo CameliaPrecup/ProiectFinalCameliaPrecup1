@@ -1,5 +1,6 @@
 package pages;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -76,6 +77,7 @@ public class LeftSideBar extends BasePage{
     }
 
     public void setPermanentAddress(String permanentAddress){
+        driver.manage().window().maximize();
         driver.findElement(ButtonElement).click();
         WebDriverWait Btn = new WebDriverWait(driver, Duration.ofSeconds(35));
         Btn.until(ExpectedConditions.elementToBeClickable(TextBoxBtn)).click();
@@ -84,9 +86,15 @@ public class LeftSideBar extends BasePage{
 
     }
     public void setSubmitBtn(){
+        driver.manage().window().maximize();
         driver.findElement(ButtonElement).click();
-        WebDriverWait Btn = new WebDriverWait(driver, Duration.ofSeconds(40));
-        Btn.until(ExpectedConditions.elementToBeClickable(TextBoxBtn)).click();
+        driver.findElement(TextBoxBtn).click();
+        driver.findElement(TextBoxFullName).sendKeys("Camelia Precup");
+        driver.findElement(EmailField).sendKeys("cameliap@example.com");
+        driver.findElement(CurrentAddress).sendKeys("Cluj");
+        driver.findElement(PermanentAddress).sendKeys("Cluj Napoca");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,300)");
         driver.findElement(SubmitBtn).click();
 
     }

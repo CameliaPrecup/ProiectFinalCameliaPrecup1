@@ -9,6 +9,8 @@ import pages.FirstPage;
 import pages.LeftSideBar;
 import pages.LoginPage;
 
+import java.time.Duration;
+
 public class LeftSideBarTestCases extends BasePage {
 
     private LeftSideBar leftSideBar;
@@ -55,17 +57,14 @@ public class LeftSideBarTestCases extends BasePage {
     }
     @Test
     public void permanentAddress()throws InterruptedException{
-        leftSideBar.setPermanentAddress("Cluj Napoca");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+        leftSideBar.setPermanentAddress("ClujNapoca");
+
         Assert.assertTrue(driver.getPageSource().contains("Permanent Address"));
     }
     @Test
     public void submitButton()throws InterruptedException{
-        leftSideBar.leftButtonElement();
-        leftSideBar.btnTextBox();
-        leftSideBar.fillUserName("Camelia Precup");
-        leftSideBar.emailAddress("cameliap@example.com");
-        leftSideBar.setCurrentAddress("Cluj");
-        leftSideBar.setPermanentAddress("Cluj Napoca");
         leftSideBar.setSubmitBtn();
         Assert.assertTrue(driver.getPageSource().contains("Submit"));
     }
